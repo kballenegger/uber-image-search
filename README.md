@@ -1,4 +1,29 @@
-uber-image-search
-=================
+# Uber Google Image Search.
 
-Uber Google Image Search.
+
+### The app and its UX
+
+![UX](http://cl.ly/image/2C2p09351K00/2014-04-29%2023.55.51.jpg)
+
+The app consists of three main screens:
+
+1. The *Home* screen. This is what you see when you enter the app.
+2. The *Query* screen. This is where you type in your query, and where you see the history of previous queries, filtered as you type.
+3. The *Results* screen. It shows the images.
+
+For the sake of saving time:
+
+- I did not build a single result screen.
+- I also did not consider how one might return to home screen, from any of the other two screens.
+
+
+### Architecture design decisions
+
+- **No nibs**. Nibs make development quicker, but quickly become a liability when working on a larger production-quality project with a team. It's easy to make changes to the file accidentally, which are hard to detect in diffs. As soon as two engineers make changes to the same nib file in different branches, it becomes a nightmare to merge. I always create all interfaces in code.
+
+- **CocoaPods**. CocoaPods is actually great, and is pretty much a requirement when using any third party code.
+
+### Third-party libraries used
+
+- **AFNetworking**. It’s a large and very robust libraries that makes it a teeny bit easier to get started with the networking aspect.
+- **ATValidation**. This is a library I wrote which performs data validation. It lets me enforce upfront that an API response looks the way I expect it to.
