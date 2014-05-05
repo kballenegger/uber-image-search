@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FFF4820E-2595-43B2-BC11-0CDA7B3778DB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>UberImageSearch</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9780E71C-3145-4FC9-833D-C99BA63C0D93</key>
+		<string>ssh://github.com/kballenegger/uber-image-search.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>UberImageSearch.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9780E71C-3145-4FC9-833D-C99BA63C0D93</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/kballenegger/uber-image-search.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9780E71C-3145-4FC9-833D-C99BA63C0D93</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9780E71C-3145-4FC9-833D-C99BA63C0D93</string>
+			<key>IDESourceControlWCCName</key>
+			<string>uber</string>
+		</dict>
+	</array>
+</dict>
+</plist>
