@@ -71,7 +71,7 @@ NSString *const kUISResultsCellKey = @"UISResultsCellKey";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return [self.currentQuery.results count] + ([self.currentQuery isLoading] ? 1 : 0);
+    return [self.currentQuery.results count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -80,9 +80,6 @@ NSString *const kUISResultsCellKey = @"UISResultsCellKey";
     if (indexPath.row >= [self.currentQuery.results count] - 5) {
         if (!self.currentQuery.isLoading) {
             [self.currentQuery loadMore];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.collectionView reloadData];
-            });
         }
     }
     
@@ -94,25 +91,12 @@ NSString *const kUISResultsCellKey = @"UISResultsCellKey";
     }
     
     
-    // if this is the loading view... the one after the last loaded image
-    if (indexPath.row >= [self.currentQuery.results count]) {
-        
-        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]
-                                                      initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        activityIndicator.center = cell.contentView.center;
-        [cell.contentView addSubview:activityIndicator];
-        
-    } else {
-        // otherwise, it's a regular cell
-        
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.bounds];
-        [imageView setImageWithURL:[NSURL URLWithString:self.currentQuery.results[indexPath.row][@"tbUrl"]]];
-        imageView.contentMode = UIViewContentModeScaleAspectFill;
-        imageView.clipsToBounds = YES;
-        [cell.contentView addSubview:imageView];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.bounds];
+    [imageView setImageWithURL:[NSURL URLWithString:self.currentQuery.results[indexPath.row][@"tbUrl"]]];
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.clipsToBounds = YES;
+    [cell.contentView addSubview:imageView];
 
-    }
-    
     return cell;
 }
 
