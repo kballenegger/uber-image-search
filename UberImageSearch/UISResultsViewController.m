@@ -78,7 +78,12 @@ NSString *const kUISResultsCellKey = @"UISResultsCellKey";
     
     // if we're seeing one of the last 5 items, load more
     if (indexPath.row >= [self.currentQuery.results count] - 5) {
-        [self.currentQuery loadMore];
+        if (!self.currentQuery.isLoading) {
+            [self.currentQuery loadMore];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.collectionView reloadData];
+            });
+        }
     }
     
     
@@ -94,7 +99,8 @@ NSString *const kUISResultsCellKey = @"UISResultsCellKey";
         
         UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]
                                                       initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        activityIndicator.center = cell.center;
+        activityIndicator.center = cell.contentView.center;
+        [cell.contentView addSubview:activityIndicator];
         
     } else {
         // otherwise, it's a regular cell
@@ -104,7 +110,6 @@ NSString *const kUISResultsCellKey = @"UISResultsCellKey";
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.clipsToBounds = YES;
         [cell.contentView addSubview:imageView];
-        cell.contentView.backgroundColor = [UIColor redColor];
 
     }
     
