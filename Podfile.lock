@@ -1,0 +1,31 @@
+PODS:
+  - AFNetworking (2.2.3):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.2.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.2.3):
+    - AFNetworking/NSURLConnection
+  - AFNetworking/Reachability (2.2.3)
+  - AFNetworking/Security (2.2.3)
+  - AFNetworking/Serialization (2.2.3)
+  - AFNetworking/UIKit (2.2.3):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - ATValidations (0.1.1)
+
+DEPENDENCIES:
+  - AFNetworking
+  - ATValidations
+
+SPEC CHECKSUMS:
+  AFNetworking: ae513199cca79e9d7af2708ccabe2ed075550c42
+  ATValidations: 70328a0e672c1eec25e43f21fecb59d6ba78c54d
+
+COCOAPODS: 0.32.1
