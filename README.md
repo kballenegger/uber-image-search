@@ -38,3 +38,4 @@ A few things I didn’t have time to fix:
 
 - The history table view seems to be 20px too tall and end up going below the keyboard. Couldn’t figure out why right away, moved on.
 - Animating from the home screen to the query / results screens looked a little funky. Disabled animations in the meantime.
+- The Google API returns a maximum of 8 items per page and 8 pages of results.
