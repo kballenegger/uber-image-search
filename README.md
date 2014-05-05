@@ -14,7 +14,7 @@ The app consists of three main screens:
 For the sake of saving time:
 
 - I did not build a single result screen.
-- I also did not consider how one might return to home screen, from any of the other two screens.
+- I also did not consider how one might return to home screen, from any of the other two screens. For now, searching for the empty string does that.
 
 
 ### Architecture design decisions

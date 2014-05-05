@@ -8,10 +8,15 @@
 
 #import "UISRootViewController.h"
 
+#import "UISResultsViewController.h"
+#import "UISHistoryViewController.h"
+
 
 // Constants
 const CGSize kUISHomeScreenLogoViewSize = {.width = 280.0, .height = 40.0};
 const CGFloat kUISSearchBoxHeight = 40.0;
+
+const CGFloat kUISAnimationDuration = 0.25;
 
 
 @interface UISRootViewController () <UITextFieldDelegate>
@@ -22,8 +27,8 @@ const CGFloat kUISSearchBoxHeight = 40.0;
 @property (strong) UIViewController *subViewController;
 
 // TODO: change these's type
-@property (strong) UIViewController *historyViewController;
-@property (strong) UIViewController *resultsViewController;
+@property (strong) UISHistoryViewController *historyViewController;
+@property (strong) UISResultsViewController *resultsViewController;
 
 @end
 
@@ -79,9 +84,29 @@ const CGFloat kUISSearchBoxHeight = 40.0;
     [self.view addSubview:searchField];
     self.searchField = searchField;
     
-    // TODO: initialize the subview controllers
+    self.resultsViewController = [[UISResultsViewController alloc] init];
+    self.historyViewController = [[UISHistoryViewController alloc] init];
     
     [self relayoutViews];
+}
+
+- (void)switchToSubViewController:(UIViewController *)viewController {
+    
+    [self.subViewController.view removeFromSuperview];
+    
+    // Animate from the bottom, when there isn't yet one
+    if (!self.subViewController) {
+        viewController.view.frame = CGRectMake(0.0, self.view.bounds.size.height - 300, self.view.bounds.size.width, 0.0 + 20);
+    }
+    
+    self.subViewController = viewController;
+    
+    [self.view addSubview:viewController.view];
+    // TODO: animations are broken right now. I'll fix it later.
+//    [UIView animateWithDuration:kUISAnimationDuration animations:^{
+        [self relayoutViews];
+//    }];
+
 }
 
 - (void)relayoutViews {
@@ -91,12 +116,13 @@ const CGFloat kUISSearchBoxHeight = 40.0;
 
         self.logoView.alpha = 0.0;
         self.logoView.center = CGPointMake(self.view.center.x, self.logoView.bounds.size.height / 2);
-        self.searchField.center = CGPointMake(self.view.center.x,
-                                              self.searchField.bounds.size.height / 2 + [UIApplication sharedApplication].statusBarFrame.size.height);
+        self.searchField.center = CGPointMake(self.view.center.x, self.searchField.bounds.size.height / 2 + self.searchField.frame.origin.x);
+
         CGRect subViewControllerFrame;
-        subViewControllerFrame.origin = CGPointMake(0, self.searchField.bounds.size.height
-                                                    + [UIApplication sharedApplication].statusBarFrame.size.height);
-        subViewControllerFrame.size = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height - subViewControllerFrame.origin.y);
+        subViewControllerFrame.origin = CGPointMake(0.0, self.searchField.bounds.size.height + 2 * self.searchField.frame.origin.x);
+        subViewControllerFrame.size = CGSizeMake(self.view.bounds.size.width,
+                                                 self.view.bounds.size.height - subViewControllerFrame.origin.y
+                                                 - self.view.frame.origin.y);
         self.subViewController.view.frame = subViewControllerFrame;
         
     } else {
@@ -110,7 +136,15 @@ const CGFloat kUISSearchBoxHeight = 40.0;
 #pragma mark Search
 
 - (void)performSearch:(NSString *)queryString {
+    if ([queryString isEqualToString:@""]) {
+        [self switchToSubViewController:nil];
+        return;
+    }
+    
     NSLog(@"Searching: %@", queryString);
+    
+    [self.resultsViewController performSearch:queryString];
+    [self switchToSubViewController:self.resultsViewController];
 }
 
 #pragma mark Text field delegate
@@ -130,6 +164,7 @@ const CGFloat kUISSearchBoxHeight = 40.0;
 #pragma mark Keyboard
 
 - (void)keyboardWillShow:(NSNotification *)notification {
+    [self switchToSubViewController:self.historyViewController];
     [self animateViewSizeFromKeyboardNotification:notification];
 }
 
