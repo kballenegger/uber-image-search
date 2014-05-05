@@ -26,7 +26,6 @@ const CGFloat kUISAnimationDuration = 0.25;
 
 @property (strong) UIViewController *subViewController;
 
-// TODO: change these's type
 @property (strong) UISHistoryViewController *historyViewController;
 @property (strong) UISResultsViewController *resultsViewController;
 
@@ -110,7 +109,9 @@ const CGFloat kUISAnimationDuration = 0.25;
     self.subViewController = viewController;
     
     [self.view addSubview:viewController.view];
-    // TODO: animations are broken right now. I'll fix it later.
+
+    // TODO: This used to be animated, but there's a small glitch the first time the animation runs. Don't have time to figure it out, so I'm just disabling it instead. Bummer :(.
+
 //    [UIView animateWithDuration:kUISAnimationDuration animations:^{
         [self relayoutViews];
 //    }];

@@ -114,7 +114,9 @@ ATVPredicate *UISGoogleImageSearchResponseValidation() {
              
          } failure:^(__unused AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Error loading google image search: %@", error);
-             // TODO: show a real alert view, or something
+
+             // TODO: Here and above, I would have had a little more user-friendly error handling.
+             
              self.isLoading = NO;
          }];
     

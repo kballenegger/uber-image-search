@@ -15,7 +15,7 @@ NSString *const kUISHistoryKey = @"UISHistoryKey";
 
 @interface UISHistoryViewController () <UITableViewDataSource, UITableViewDelegate>
 
-// TODO: keep track of time
+// TODO: I meant to keep track of the timestamp of each history entry, so that I could show it in the table view (eg. "2h ago"). Didn't get around to it.
 @property (strong) NSMutableArray *history;
 @property (strong) NSArray *filteredHistory;
 
@@ -75,7 +75,7 @@ NSString *const kUISHistoryKey = @"UISHistoryKey";
 }
 
 - (void)filterHistory:(NSString *)prefix {
-    // TODO: implement me
+    // TODO: If I had more time, I would have implemented filtering here: as you type the history only shows prefix-matches entries.
     self.filteredHistory = self.history;
     [self.view reloadData];
 }
