@@ -99,11 +99,10 @@ NSString *const kUISResultsCellKey = @"UISResultsCellKey";
     } else {
         // otherwise, it's a regular cell
         
-//        UILabel *label = [[UILabel alloc] initWithFrame:cell.bounds];
-//        label.textAlignment = NSTextAlignmentCenter;
-//        label.text = self.currentQuery.results[indexPath.row][@"title"];
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.bounds];
         [imageView setImageWithURL:[NSURL URLWithString:self.currentQuery.results[indexPath.row][@"tbUrl"]]];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = YES;
         [cell.contentView addSubview:imageView];
         cell.contentView.backgroundColor = [UIColor redColor];
 
