@@ -18,6 +18,7 @@
 		9FE33CB819170E170094BD56 /* UISRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE33CB719170E170094BD56 /* UISRootViewController.m */; };
 		9FE33CBB191725780094BD56 /* UISResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE33CBA191725780094BD56 /* UISResultsViewController.m */; };
 		9FE33CBE191727D30094BD56 /* UISHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE33CBD191727D30094BD56 /* UISHistoryViewController.m */; };
+		9FE33CC1191792B40094BD56 /* UISQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE33CC0191792B40094BD56 /* UISQuery.m */; };
 		E55083F2051B41BEAF724567 /* libPods-UberImageSearch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D15A34364FE428BBD677050 /* libPods-UberImageSearch.a */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,8 @@
 		9FE33CBA191725780094BD56 /* UISResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISResultsViewController.m; sourceTree = "<group>"; };
 		9FE33CBC191727D30094BD56 /* UISHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISHistoryViewController.h; sourceTree = "<group>"; };
 		9FE33CBD191727D30094BD56 /* UISHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISHistoryViewController.m; sourceTree = "<group>"; };
+		9FE33CBF191792B40094BD56 /* UISQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISQuery.h; sourceTree = "<group>"; };
+		9FE33CC0191792B40094BD56 /* UISQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISQuery.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +101,8 @@
 				9FE33CB719170E170094BD56 /* UISRootViewController.m */,
 				9FE33CB9191725780094BD56 /* UISResultsViewController.h */,
 				9FE33CBA191725780094BD56 /* UISResultsViewController.m */,
+				9FE33CBF191792B40094BD56 /* UISQuery.h */,
+				9FE33CC0191792B40094BD56 /* UISQuery.m */,
 				9FE33CBC191727D30094BD56 /* UISHistoryViewController.h */,
 				9FE33CBD191727D30094BD56 /* UISHistoryViewController.m */,
 				9FE01A131917051D006FAAB6 /* Images.xcassets */,
@@ -223,6 +228,7 @@
 				9FE01A121917051D006FAAB6 /* UISAppDelegate.m in Sources */,
 				9FE01A0E1917051D006FAAB6 /* main.m in Sources */,
 				9FE33CBE191727D30094BD56 /* UISHistoryViewController.m in Sources */,
+				9FE33CC1191792B40094BD56 /* UISQuery.m in Sources */,
 				9FE33CBB191725780094BD56 /* UISResultsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,10 +8,17 @@
 
 #import "UISResultsViewController.h"
 
+#import "UISQuery.h"
+
+#import <AFNetworking/UIImageView+AFNetworking.h>
+
+
 NSString *const kUISResultsCellKey = @"UISResultsCellKey";
 
 
 @interface UISResultsViewController ()
+
+@property (strong) UISQuery *currentQuery;
 
 @end
 
@@ -50,31 +57,58 @@ NSString *const kUISResultsCellKey = @"UISResultsCellKey";
 
 - (void)performSearch:(NSString *)queryString {
     
+    UISQuery *query = [[UISQuery alloc] initWithQuery:queryString];
+    self.currentQuery = query;
+    query.reloadCallback = ^{
+        [self.collectionView reloadData];
+    };
+    
+    [self.collectionView reloadData];
 }
+
 
 #pragma mark Collection view stuff
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (section == 0) {
-        return 100;
-    } else {
-        return 0;
-    }
     
+    return [self.currentQuery.results count] + ([self.currentQuery isLoading] ? 1 : 0);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // if we're seeing one of the last 5 items, load more
+    if (indexPath.row >= [self.currentQuery.results count] - 5) {
+        [self.currentQuery loadMore];
+    }
+    
+    
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kUISResultsCellKey forIndexPath:indexPath];
     
     for (UIView *view in [cell.contentView subviews]) {
         [view removeFromSuperview];
     }
     
-    UILabel *label = [[UILabel alloc] initWithFrame:cell.bounds];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.text = [NSString stringWithFormat:@"%ld", (long)indexPath.row];
-    [cell.contentView addSubview:label];
-    cell.contentView.backgroundColor = [UIColor redColor];
+    
+    // if this is the loading view... the one after the last loaded image
+    if (indexPath.row >= [self.currentQuery.results count]) {
+        
+        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]
+                                                      initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        activityIndicator.center = cell.center;
+        
+    } else {
+        // otherwise, it's a regular cell
+        
+//        UILabel *label = [[UILabel alloc] initWithFrame:cell.bounds];
+//        label.textAlignment = NSTextAlignmentCenter;
+//        label.text = self.currentQuery.results[indexPath.row][@"title"];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.bounds];
+        [imageView setImageWithURL:[NSURL URLWithString:self.currentQuery.results[indexPath.row][@"tbUrl"]]];
+        [cell.contentView addSubview:imageView];
+        cell.contentView.backgroundColor = [UIColor redColor];
+
+    }
+    
     return cell;
 }
 
