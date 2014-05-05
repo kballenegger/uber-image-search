@@ -25,7 +25,16 @@ For the sake of saving time:
 
 - **MVC**. This app is actually not a great candidate for MVC, so the pattern is barely used. The main example of MVC is in the separation of the view controllers.
 
+
 ### Third-party libraries used
 
 - **AFNetworking**. It’s a large and very robust libraries that makes it a teeny bit easier to get started with the networking aspect.
 - **ATValidation**. This is a library I wrote which performs data validation. It lets me enforce upfront that an API response looks the way I expect it to.
+
+
+### Known issues
+
+A few things I didn’t have time to fix:
+
+- The history table view seems to be 20px too tall and end up going below the keyboard. Couldn’t figure out why right away, moved on.
+- Animating from the home screen to the query / results screens looked a little funky. Disabled animations in the meantime.

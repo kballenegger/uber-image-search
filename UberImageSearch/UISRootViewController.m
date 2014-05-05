@@ -14,7 +14,7 @@
 
 // Constants
 const CGSize kUISHomeScreenLogoViewSize = {.width = 280.0, .height = 40.0};
-const CGFloat kUISSearchBoxHeight = 40.0;
+const CGFloat kUISSearchBoxHeight = 30.0;
 
 const CGFloat kUISAnimationDuration = 0.25;
 
@@ -58,7 +58,7 @@ const CGFloat kUISAnimationDuration = 0.25;
     [super viewDidLoad];
     
     // Configure self's view
-    self.view.backgroundColor = [UIColor blueColor];
+
     // This needs to happen in the next run loop cycle, otherwise it'll be overriden.
     dispatch_async(dispatch_get_main_queue(), ^{
         self.view.frame = CGRectMake(0.0, [UIApplication sharedApplication].statusBarFrame.size.height, self.view.frame.size.width,
@@ -79,6 +79,9 @@ const CGFloat kUISAnimationDuration = 0.25;
     searchField.layer.cornerRadius = 5.0;
     searchField.backgroundColor = [UIColor whiteColor];
     searchField.returnKeyType = UIReturnKeySearch;
+    searchField.placeholder = @"Search Images";
+    searchField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 1)]; // hack to add 5pt of left padding
+    searchField.leftViewMode = UITextFieldViewModeAlways;
     searchField.delegate = self;
     
     [self.view addSubview:searchField];
@@ -86,6 +89,11 @@ const CGFloat kUISAnimationDuration = 0.25;
     
     self.resultsViewController = [[UISResultsViewController alloc] init];
     self.historyViewController = [[UISHistoryViewController alloc] init];
+    
+    __weak UISRootViewController *weakSelf = self;
+    self.historyViewController.historicalQuerySelectedCallback = ^(NSString *queryString) {
+        [weakSelf performSearch:queryString];
+    };
     
     [self relayoutViews];
 }
@@ -121,14 +129,13 @@ const CGFloat kUISAnimationDuration = 0.25;
         CGRect subViewControllerFrame;
         subViewControllerFrame.origin = CGPointMake(0.0, self.searchField.bounds.size.height + 2 * self.searchField.frame.origin.x);
         subViewControllerFrame.size = CGSizeMake(self.view.bounds.size.width,
-                                                 self.view.bounds.size.height - subViewControllerFrame.origin.y
-                                                 - self.view.frame.origin.y);
+                                                 self.view.bounds.size.height - subViewControllerFrame.origin.y);
         self.subViewController.view.frame = subViewControllerFrame;
         
     } else {
         self.logoView.alpha = 1.0;
-        self.logoView.center = CGPointMake(self.view.center.x, self.view.center.y - 10 - self.logoView.bounds.size.height / 2 - 20);
-        self.searchField.center = CGPointMake(self.view.center.x, self.view.center.y + 10 + self.searchField.bounds.size.height / 2 - 20);
+        self.logoView.center = CGPointMake(self.view.center.x, self.view.center.y - 5 - self.logoView.bounds.size.height / 2 - 20);
+        self.searchField.center = CGPointMake(self.view.center.x, self.view.center.y + 5 + self.searchField.bounds.size.height / 2 - 20);
     }
     
 }
@@ -136,12 +143,19 @@ const CGFloat kUISAnimationDuration = 0.25;
 #pragma mark Search
 
 - (void)performSearch:(NSString *)queryString {
+    if (self.searchField.isFirstResponder) {
+        [self.searchField resignFirstResponder];
+    }
+    self.searchField.text = queryString; // in case it came from the history
+
     if ([queryString isEqualToString:@""]) {
         [self switchToSubViewController:nil];
         return;
     }
     
     NSLog(@"Searching: %@", queryString);
+    
+    [self.historyViewController recordSearch:queryString];
     
     [self.resultsViewController performSearch:queryString];
     [self switchToSubViewController:self.resultsViewController];

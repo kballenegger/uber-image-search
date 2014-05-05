@@ -10,6 +10,8 @@
 
 @interface UISHistoryViewController : UIViewController
 
+@property (strong) void(^historicalQuerySelectedCallback)(NSString *);
+
 - (void)recordSearch:(NSString *)queryString;
 
 - (void)filterHistory:(NSString *)prefix;

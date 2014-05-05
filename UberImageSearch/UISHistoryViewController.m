@@ -8,7 +8,7 @@
 
 #import "UISHistoryViewController.h"
 
-const NSInteger kUISHistoryLimit;
+const NSInteger kUISHistoryLimit = 30;
 NSString *const kUISHistoryKey = @"UISHistoryKey";
 
 
@@ -33,6 +33,8 @@ NSString *const kUISHistoryKey = @"UISHistoryKey";
         // Load history from user defaults (or initialize a new history)
         self.history = [([[NSUserDefaults standardUserDefaults] arrayForKey:kUISHistoryKey] ?: @[])
                         mutableCopy];
+        self.filteredHistory = self.history;
+
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(applicationWillResignActive:)
@@ -63,6 +65,12 @@ NSString *const kUISHistoryKey = @"UISHistoryKey";
 
 - (void)recordSearch:(NSString *)queryString {
     [self.history addObject:queryString];
+    
+    if ([self.history count] > kUISHistoryLimit) {
+        [self.history removeObjectAtIndex:0];
+    }
+    
+    self.filteredHistory = self.history;
     [self.view reloadData];
 }
 
@@ -85,7 +93,7 @@ NSString *const kUISHistoryKey = @"UISHistoryKey";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 10;
+        return [self.filteredHistory count];
     }
     return 0;
 }
@@ -95,11 +103,19 @@ NSString *const kUISHistoryKey = @"UISHistoryKey";
     UITableViewCell *cell = ([self.view dequeueReusableCellWithIdentifier:kUISHistoryKey] ?:
                              [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kUISHistoryKey]);
     
-    cell.textLabel.text = @"hola";
+    cell.textLabel.text = self.filteredHistory[[self.filteredHistory count] - 1 - indexPath.row];
     
     return cell;
 }
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSString *queryString = self.filteredHistory[[self.filteredHistory count] - 1 - indexPath.row];
+    
+    if (self.historicalQuerySelectedCallback) self.historicalQuerySelectedCallback(queryString);
+}
 
 
 #pragma mark Keyboard
