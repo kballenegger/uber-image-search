@@ -87,7 +87,7 @@ const CGFloat kUISAnimationDuration = 0.25;
     [self.view addSubview:searchField];
     self.searchField = searchField;
     
-    self.resultsViewController = [[UISResultsViewController alloc] init];
+    self.resultsViewController = [UISResultsViewController laidOutViewController];
     self.historyViewController = [[UISHistoryViewController alloc] init];
     
     __weak UISRootViewController *weakSelf = self;

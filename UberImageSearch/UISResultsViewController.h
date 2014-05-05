@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UISResultsViewController : UIViewController
+@interface UISResultsViewController : UICollectionViewController
+
++ (instancetype)laidOutViewController;
 
 - (void)performSearch:(NSString *)queryString;
 
