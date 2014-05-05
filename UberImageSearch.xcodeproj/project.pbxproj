@@ -14,6 +14,7 @@
 		9FE01A0E1917051D006FAAB6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE01A0D1917051D006FAAB6 /* main.m */; };
 		9FE01A121917051D006FAAB6 /* UISAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE01A111917051D006FAAB6 /* UISAppDelegate.m */; };
 		9FE01A141917051D006FAAB6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FE01A131917051D006FAAB6 /* Images.xcassets */; };
+		9FE33CB519170D070094BD56 /* uber-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FE33CB419170D070094BD56 /* uber-logo.png */; };
 		E55083F2051B41BEAF724567 /* libPods-UberImageSearch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D15A34364FE428BBD677050 /* libPods-UberImageSearch.a */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		9FE01A111917051D006FAAB6 /* UISAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UISAppDelegate.m; sourceTree = "<group>"; };
 		9FE01A131917051D006FAAB6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9FE01A1A1917051D006FAAB6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		9FE33CB419170D070094BD56 /* uber-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uber-logo.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 		9FE01A081917051D006FAAB6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9FE33CB419170D070094BD56 /* uber-logo.png */,
 				75A5FD50B31F4B4DBE6455FF /* Pods-UberImageSearch.xcconfig */,
 				9FE01A091917051D006FAAB6 /* UberImageSearch-Info.plist */,
 				9FE01A0A1917051D006FAAB6 /* InfoPlist.strings */,
@@ -157,6 +160,7 @@
 			files = (
 				9FE01A0C1917051D006FAAB6 /* InfoPlist.strings in Resources */,
 				9FE01A141917051D006FAAB6 /* Images.xcassets in Resources */,
+				9FE33CB519170D070094BD56 /* uber-logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
