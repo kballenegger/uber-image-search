@@ -7,6 +7,7 @@
 //
 
 #import "UISAppDelegate.h"
+#import "UISRootViewController.h"
 
 @implementation UISAppDelegate
 
@@ -14,7 +15,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor grayColor];
+    self.window.rootViewController = [[UISRootViewController alloc] init];
 
     [self.window makeKeyAndVisible];
     return YES;

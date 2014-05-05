@@ -15,6 +15,7 @@
 		9FE01A121917051D006FAAB6 /* UISAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE01A111917051D006FAAB6 /* UISAppDelegate.m */; };
 		9FE01A141917051D006FAAB6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FE01A131917051D006FAAB6 /* Images.xcassets */; };
 		9FE33CB519170D070094BD56 /* uber-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FE33CB419170D070094BD56 /* uber-logo.png */; };
+		9FE33CB819170E170094BD56 /* UISRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE33CB719170E170094BD56 /* UISRootViewController.m */; };
 		E55083F2051B41BEAF724567 /* libPods-UberImageSearch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D15A34364FE428BBD677050 /* libPods-UberImageSearch.a */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,8 @@
 		9FE01A131917051D006FAAB6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9FE01A1A1917051D006FAAB6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9FE33CB419170D070094BD56 /* uber-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uber-logo.png"; sourceTree = "<group>"; };
+		9FE33CB619170E170094BD56 /* UISRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISRootViewController.h; sourceTree = "<group>"; };
+		9FE33CB719170E170094BD56 /* UISRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISRootViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,8 @@
 			children = (
 				9FE01A101917051D006FAAB6 /* UISAppDelegate.h */,
 				9FE01A111917051D006FAAB6 /* UISAppDelegate.m */,
+				9FE33CB619170E170094BD56 /* UISRootViewController.h */,
+				9FE33CB719170E170094BD56 /* UISRootViewController.m */,
 				9FE01A131917051D006FAAB6 /* Images.xcassets */,
 				9FE01A081917051D006FAAB6 /* Supporting Files */,
 			);
@@ -204,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FE33CB819170E170094BD56 /* UISRootViewController.m in Sources */,
 				9FE01A121917051D006FAAB6 /* UISAppDelegate.m in Sources */,
 				9FE01A0E1917051D006FAAB6 /* main.m in Sources */,
 			);

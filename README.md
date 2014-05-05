@@ -23,6 +23,8 @@ For the sake of saving time:
 
 - **CocoaPods**. CocoaPods is actually great, and is pretty much a requirement when using any third party code.
 
+- **MVC**. This app is actually not a great candidate for MVC, so the pattern is barely used. The main example of MVC is in the separation of the view controllers.
+
 ### Third-party libraries used
 
 - **AFNetworking**. It’s a large and very robust libraries that makes it a teeny bit easier to get started with the networking aspect.
